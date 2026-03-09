@@ -1,7 +1,9 @@
 ---
+import { getImagePath } from "astro-opengraph-images";
 import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import FormattedDate from "../components/FormattedDate.astro";
+import { SITE_TITLE, SITE_URL } from "../consts";
 
 type Props = CollectionEntry<"blog">["data"] & {
   readingTime?: number;
@@ -10,11 +12,48 @@ type Props = CollectionEntry<"blog">["data"] & {
 
 const { title, description, pubDate, updatedDate, heroImage, readingTime, headings } = Astro.props;
 const hasTableOfContents = headings && headings.filter((h) => h.depth <= 3).length > 2;
+const openGraphImage = getImagePath({ url: Astro.url, site: Astro.site });
+const structuredDataImage = heroImage
+  ? new URL(heroImage.src, Astro.url).toString()
+  : openGraphImage;
+const articleStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description,
+  image: [structuredDataImage],
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  author: {
+    "@type": "Person",
+    name: "Nitish Sharma",
+    url: SITE_URL,
+  },
+  publisher: {
+    "@type": "Person",
+    name: "Nitish Sharma",
+    url: SITE_URL,
+  },
+  isPartOf: {
+    "@type": "Blog",
+    name: `${SITE_TITLE} Blog`,
+    url: new URL("/blog/", SITE_URL).toString(),
+  },
+  mainEntityOfPage: Astro.url.toString(),
+  url: Astro.url.toString(),
+};
 ---
 
 <html lang="en" class="scroll-smooth">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead
+      title={title}
+      description={description}
+      type="article"
+      publishedTime={pubDate}
+      modifiedTime={updatedDate ?? pubDate}
+      structuredData={articleStructuredData}
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

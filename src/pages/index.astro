@@ -1,7 +1,7 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "../consts";
 import { getCollection } from "astro:content";
 
 const allPosts = (await getCollection("blog")).sort(
@@ -93,6 +93,37 @@ const projects = [
     url: "https://snaplog.ai",
   },
 ];
+
+const homepageStructuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: SITE_TITLE,
+    url: SITE_URL,
+    description: SITE_DESCRIPTION,
+    jobTitle: "Full-Stack Engineer",
+    email: "mailto:nitishxyz@proton.me",
+    sameAs: [
+      "https://github.com/nitishxyz",
+      "https://x.com/nitishxyz",
+      "https://www.linkedin.com/in/nitishxyz/",
+    ],
+    worksFor: {
+      "@type": "Organization",
+      name: "Ngrave",
+      url: "https://ngrave.io",
+    },
+    knowsAbout: ["React Native", "Next.js", "AWS", "Solana", "Expo", "TypeScript"],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_TITLE,
+    url: SITE_URL,
+    description: SITE_DESCRIPTION,
+    inLanguage: "en",
+  },
+];
 ---
 
 <!doctype html>
@@ -101,6 +132,7 @@ const projects = [
     <BaseHead
       title={`${SITE_TITLE} — Full-Stack Engineer`}
       description={SITE_DESCRIPTION}
+      structuredData={homepageStructuredData}
     />
   </head>
   <body class="antialiased">
