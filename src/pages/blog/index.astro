@@ -1,0 +1,113 @@
+---
+import { getCollection } from "astro:content";
+import BaseHead from "../../components/BaseHead.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
+import { SITE_TITLE } from "../../consts";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <BaseHead
+      title={`Blog | ${SITE_TITLE}`}
+      description="Thoughts on engineering, building products, and the things I learn along the way."
+    />
+  </head>
+  <body class="antialiased">
+    <div id="spotlight"></div>
+
+    <div class="mx-auto min-h-screen max-w-3xl px-6 py-12 md:px-12 md:py-20">
+      <nav class="mb-16 nav-enter">
+        <a
+          href="/"
+          class="group inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline"
+        >
+          <svg class="h-4 w-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10M7 7v10" transform="rotate(180 12 12)"/>
+          </svg>
+          Nitish Sharma
+        </a>
+      </nav>
+
+      <header class="mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-bright mb-4">
+          Blog
+        </h1>
+        <p class="text-muted text-lg max-w-xl">
+          Thoughts on engineering, building products, and the things I learn along the way.
+        </p>
+      </header>
+
+      <main>
+        {
+          posts.length === 0 ? (
+            <div class="text-center py-20">
+              <p class="text-muted text-lg">No posts yet. Check back soon.</p>
+            </div>
+          ) : (
+            <div class="space-y-2">
+              {posts.map((post) => (
+                <a
+                  href={`/blog/${post.id}/`}
+                  class="card-glow group block rounded-lg p-6 -mx-6 transition-all"
+                >
+                  <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6">
+                    <span class="text-xs font-semibold uppercase tracking-wide text-muted shrink-0 sm:w-32">
+                      <FormattedDate date={post.data.pubDate} />
+                    </span>
+                    <div class="flex-1">
+                      <h2 class="font-medium text-bright group-hover:text-accent transition-colors text-lg">
+                        {post.data.title}
+                      </h2>
+                      {post.data.description && (
+                        <p class="mt-1 text-sm text-muted line-clamp-2">
+                          {post.data.description}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          )
+        }
+      </main>
+
+      <footer class="mt-24 pt-8 border-t border-[rgba(255,255,255,0.08)] text-sm text-muted">
+        <p>&copy; {new Date().getFullYear()} Nitish Sharma</p>
+      </footer>
+    </div>
+
+    <script>
+      const spotlight = document.getElementById("spotlight") as HTMLCanvasElement | null;
+      if (spotlight) {
+        const canvas = document.createElement("canvas");
+        canvas.style.cssText = "position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1";
+        spotlight.replaceWith(canvas);
+        const ctx = canvas.getContext("2d")!;
+        let mouseX = -1000, mouseY = -1000;
+        let curX = -1000, curY = -1000;
+        const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+        resize();
+        window.addEventListener("resize", resize);
+        document.addEventListener("mousemove", (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+        const draw = () => {
+          curX += (mouseX - curX) * 0.15;
+          curY += (mouseY - curY) * 0.15;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const gradient = ctx.createRadialGradient(curX, curY, 0, curX, curY, 600);
+          gradient.addColorStop(0, "rgba(255, 255, 255, 0.04)");
+          gradient.addColorStop(1, "transparent");
+          ctx.fillStyle = gradient;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          requestAnimationFrame(draw);
+        };
+        requestAnimationFrame(draw);
+      }
+    </script>
+  </body>
+</html>

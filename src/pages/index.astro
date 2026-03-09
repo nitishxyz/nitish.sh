@@ -1,0 +1,497 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import { getCollection } from "astro:content";
+
+const allPosts = (await getCollection("blog")).sort(
+  (a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+);
+
+const jobs = [
+  {
+    company: "Ngrave",
+    url: "https://ngrave.io",
+    role: "Full-Stack Engineer",
+    period: "2025 — Present",
+    current: true,
+    bullets: [
+      "Co-led migration from bare React Native → Expo (EAS)",
+      "Architected automated iOS/Android build & release pipeline",
+      "Implemented secure wallet transaction flows",
+    ],
+    tech: ["React Native", "Expo", "TypeScript", "CI/CD"],
+  },
+  {
+    company: "Trilogy (Crossover)",
+    url: "https://www.crossover.com",
+    role: "Senior Mobile Engineer",
+    period: "2024",
+    bullets: [
+      "Built production React Native features for TeachTap",
+      "Developed reusable UI component systems",
+      "Optimized performance across devices",
+    ],
+    tech: ["React Native", "TypeScript"],
+  },
+  {
+    company: "Suptho Inc.",
+    url: "#",
+    role: "Full-Stack Engineer",
+    period: "2021 — 2024",
+    bullets: [
+      "Built & scaled mobile app to 7K+ users",
+      "Built & scaled Telegram bot to 80K+ users",
+      "Led backend migration Firebase → AWS",
+      "Owned frontend, backend, and infra end-to-end",
+    ],
+    impact: "0 → 87K+ users",
+    tech: ["React Native", "Node.js", "AWS"],
+  },
+  {
+    company: "Shapeman Technologies",
+    url: "#",
+    role: "React Native Developer",
+    period: "2020 — 2021",
+    bullets: [
+      "Built client-facing React Native apps",
+      "Integrated REST APIs and shipped production UI flows",
+    ],
+    tech: ["React Native", "JavaScript"],
+  },
+];
+
+const projects = [
+  {
+    name: "ottocode",
+    description:
+      "AI-powered coding agent + orchestrator. CLI, desktop app, and embeddable server with multi-interface architecture around a shared core.",
+    tech: ["SST", "Cloudflare", "AWS", "Tauri", "TypeScript", "Bun"],
+    url: "https://github.com/nitishxyz/otto",
+    stars: "",
+  },
+  {
+    name: "solforge",
+    description:
+      "Solana localnet orchestration tool for developers. Allows cloning mainnet programs & tokens into local validator. Open-source dev tool.",
+    tech: ["Bun", "Vite", "TypeScript", "SST", "AWS"],
+    url: "https://solforge.dev",
+    award: "Honorable Mention — Colosseum Cypherpunk Hackathon",
+  },
+  {
+    name: "soljar",
+    description:
+      'Solana-powered "Instabank" for receiving bank transfers & USDC. Built wallet + swap + fiat withdrawal flows with a focus on seamless crypto-to-fiat UX.',
+    tech: ["SST", "Cloudflare", "AWS", "Expo", "React Native"],
+    url: "https://soljar.xyz",
+  },
+  {
+    name: "snaplog.ai",
+    description:
+      "AI-powered structured writing platform. Converts fragmented notes into structured writeups with AI-assisted editing and iterative refinement. Live production SaaS.",
+    tech: ["Next.js", "TypeScript", "PostgreSQL", "Gemini"],
+    url: "https://snaplog.ai",
+  },
+];
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <BaseHead
+      title={`${SITE_TITLE} — Full-Stack Engineer`}
+      description={SITE_DESCRIPTION}
+    />
+  </head>
+  <body class="antialiased">
+    <div id="spotlight"></div>
+
+    <div
+      class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 md:py-20 lg:px-24 lg:py-0"
+    >
+      <div class="lg:flex lg:justify-between lg:gap-4">
+        <!-- LEFT COLUMN — sticky header -->
+        <header
+          class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24"
+        >
+          <div>
+            <div class="hero-enter">
+              <div
+                class="flex items-center gap-2 mb-4"
+              >
+                <span
+                  class="relative w-2 h-2 rounded-full bg-green-400 status-dot"
+                ></span>
+                <span class="text-xs font-mono text-green-400 uppercase tracking-widest"
+                  >Available for work</span
+                >
+              </div>
+              <h1
+                class="text-4xl font-bold tracking-tight text-bright sm:text-5xl"
+              >
+                <a href="/">Nitish Sharma</a>
+              </h1>
+              <h2 class="mt-3 text-lg font-medium tracking-tight text-bright sm:text-xl">
+                Full-Stack Engineer
+              </h2>
+              <p class="mt-4 max-w-xs leading-normal text-muted">
+                I build products from 0→1 and scale them in production. Strong in React Native, Next.js, AWS, and Solana.
+              </p>
+            </div>
+
+            <nav class="nav hidden lg:block hero-enter-delayed" aria-label="In-page jump links">
+              <ul class="mt-16 w-max space-y-4">
+                <li>
+                  <a class="group flex items-center gap-4 py-1 nav-indicator active" href="#about" data-nav>
+                    <span class="nav-line"></span>
+                    <span class="text-xs font-bold uppercase tracking-widest">About</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="group flex items-center gap-4 py-1 nav-indicator" href="#experience" data-nav>
+                    <span class="nav-line"></span>
+                    <span class="text-xs font-bold uppercase tracking-widest">Experience</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="group flex items-center gap-4 py-1 nav-indicator" href="#projects" data-nav>
+                    <span class="nav-line"></span>
+                    <span class="text-xs font-bold uppercase tracking-widest">Projects</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="group flex items-center gap-4 py-1 nav-indicator" href="#blog" data-nav>
+                    <span class="nav-line"></span>
+                    <span class="text-xs font-bold uppercase tracking-widest">Writing</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <ul class="ml-1 mt-8 flex items-center gap-5 hero-enter-delayed-2" aria-label="Social media">
+            <li>
+              <a
+                class="block text-muted hover:text-bright transition-colors"
+                href="https://github.com/nitishxyz"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="GitHub"
+              >
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="block text-muted hover:text-bright transition-colors"
+                href="https://x.com/nitishxyz"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Twitter"
+              >
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="block text-muted hover:text-bright transition-colors"
+                href="https://www.linkedin.com/in/nitishxyz/"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="LinkedIn"
+              >
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="block text-muted hover:text-bright transition-colors"
+                href="mailto:nitishxyz@proton.me"
+                aria-label="Email"
+              >
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+              </a>
+            </li>
+          </ul>
+        </header>
+
+        <!-- RIGHT COLUMN — scrollable content -->
+        <main id="content" class="pt-24 lg:w-[52%] lg:py-24">
+
+          <!-- ABOUT -->
+          <section id="about" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24" aria-label="About me">
+            <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen max-w-none bg-bg/80 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+              <h2 class="text-sm font-bold uppercase tracking-widest text-bright lg:sr-only">About</h2>
+            </div>
+            <div data-animate="fade-up" data-duration="600">
+              <p class="mb-4">
+                Shipped apps to <span class="text-bright">87K+ users</span>
+                and built CI/CD pipelines across iOS and Android.
+                Currently at <a href="https://ngrave.io" class="link-accent font-medium" target="_blank" rel="noreferrer">Ngrave</a> working on a secure crypto wallet.
+              </p>
+              <p>
+                Outside work — building
+                <a href="https://github.com/nitishxyz" class="link-accent font-medium" target="_blank" rel="noreferrer">open-source tools</a>
+                for Solana and experimenting with AI dev tools.
+              </p>
+            </div>
+          </section>
+
+          <!-- EXPERIENCE -->
+          <section id="experience" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24" aria-label="Work experience">
+            <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen max-w-none bg-bg/80 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+              <h2 class="text-sm font-bold uppercase tracking-widest text-bright lg:sr-only">Experience</h2>
+            </div>
+            <div class="relative">
+              <div class="absolute left-[7px] top-3 bottom-6 w-px bg-[rgba(255,255,255,0.06)]"></div>
+
+              <div class="space-y-10">
+                {jobs.map((job, i) => (
+                  <div
+                    class="relative pl-8"
+                    data-animate="fade-up"
+                    data-delay={String(i * 80)}
+                    data-duration="600"
+                  >
+                    <div class="absolute left-0 top-[6px] z-10">
+                      {job.current ? (
+                        <span class="relative flex h-[15px] w-[15px]">
+                          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-40"></span>
+                          <span class="relative inline-flex h-[15px] w-[15px] rounded-full border-2 border-bg bg-green-400"></span>
+                        </span>
+                      ) : (
+                        <span class="block h-[15px] w-[15px] rounded-full border-2 border-[rgba(255,255,255,0.12)] bg-[#0a0a0b] shadow-[0_0_0_3px_#0a0a0b]"></span>
+                      )}
+                    </div>
+
+                    <div class="flex items-baseline justify-between gap-4 mb-1">
+                      <h3 class="text-bright font-medium">
+                        {job.role}
+                        <span class="text-muted font-normal"> · </span>
+                        <a
+                          href={job.url}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          class="text-bright hover:text-white transition-colors"
+                        >
+                          {job.company}
+                          {job.url !== "#" && (
+                            <svg class="ml-0.5 mb-0.5 inline-block h-3 w-3 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/>
+                            </svg>
+                          )}
+                        </a>
+                      </h3>
+                      <span class="text-xs text-muted font-mono shrink-0">{job.period}</span>
+                    </div>
+
+                    <ul class="mt-2 space-y-1">
+                      {job.bullets.map((b) => (
+                        <li class="text-sm text-subtle flex items-start gap-2">
+                          <span class="text-[rgba(255,255,255,0.2)] mt-[7px] text-[6px] leading-none shrink-0">●</span>
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {job.impact && (
+                      <p class="mt-2 text-sm font-medium text-green-400">{job.impact}</p>
+                    )}
+
+                    <div class="mt-3 flex flex-wrap gap-1.5">
+                      {job.tech.map((t) => (
+                        <span class="rounded-full border border-[rgba(255,255,255,0.08)] px-2.5 py-0.5 text-xs text-muted">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div class="relative mt-10 pl-8" data-animate="fade-up" data-duration="600">
+                <div class="absolute left-0 top-[5px] z-10">
+                  <span class="block h-[15px] w-[15px] rounded-full border-2 border-[rgba(255,255,255,0.12)] bg-[#0a0a0b] shadow-[0_0_0_3px_#0a0a0b]"></span>
+                </div>
+                <a
+                  class="group inline-flex items-center gap-1 text-sm font-medium text-bright hover:text-white transition-colors"
+                  href="/resume.pdf"
+                >
+                  View Full Resume
+                  <svg class="ml-1 inline-block h-3.5 w-3.5 shrink-0 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- PROJECTS -->
+          <section id="projects" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24" aria-label="Selected projects">
+            <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen max-w-none bg-bg/80 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+              <h2 class="text-sm font-bold uppercase tracking-widest text-bright lg:sr-only">Projects</h2>
+            </div>
+            <div class="space-y-6">
+              {projects.map((project, i) => (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  class="card-glow group block rounded-lg p-5 lg:p-6 lg:-mx-6 transition-all"
+                  data-animate="fade-up"
+                  data-delay={String(i * 80)}
+                  data-duration="600"
+                >
+                  <div class="flex items-baseline justify-between gap-4 mb-1.5">
+                    <h3 class="text-bright font-medium group-hover:text-white transition-colors">
+                      {project.name}
+                      <svg class="ml-1 mb-0.5 inline-block h-3 w-3 opacity-40 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/>
+                      </svg>
+                    </h3>
+                  </div>
+
+                  <p class="text-sm text-subtle leading-relaxed">{project.description}</p>
+
+                  {project.award && (
+                    <p class="mt-2 text-sm font-medium text-green-400 flex items-center gap-1.5">
+                      <svg class="h-3.5 w-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd"/></svg>
+                      {project.award}
+                    </p>
+                  )}
+
+                  <div class="mt-3 flex flex-wrap gap-1.5">
+                    {project.tech.map((t) => (
+                      <span class="rounded-full border border-[rgba(255,255,255,0.08)] px-2.5 py-0.5 text-xs text-muted">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <!-- WRITING -->
+          <section id="blog" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24" aria-label="Blog posts">
+            <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen max-w-none bg-bg/80 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+              <h2 class="text-sm font-bold uppercase tracking-widest text-bright lg:sr-only">Writing</h2>
+            </div>
+            <div>
+              {allPosts.map((post, i) => (
+                <a
+                  class="card-glow group relative grid gap-4 rounded-lg p-4 lg:p-6 lg:-mx-6 transition-all mb-2"
+                  href={`/blog/${post.id}/`}
+                  data-animate="fade-up"
+                  data-duration="600"
+                  data-delay={String(i * 100)}
+                >
+                  <div class="z-10">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-muted mb-2">
+                      {new Date(post.data.pubDate).toLocaleDateString("en-us", { year: "numeric", month: "short" })}
+                    </p>
+                    <h3 class="font-medium leading-snug text-bright group-hover:text-accent transition-colors">
+                      {post.data.title}
+                    </h3>
+                    <p class="mt-2 text-sm leading-normal">
+                      {post.data.description}
+                    </p>
+                  </div>
+                </a>
+              ))}
+
+              <div class="mt-12" data-animate="fade-up" data-duration="600">
+                <a
+                  class="group inline-flex items-center gap-1 font-semibold leading-tight text-bright hover:text-accent transition-colors"
+                  href="/blog"
+                >
+                  View All Posts
+                  <svg class="ml-1 inline-block h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- FOOTER -->
+          <footer class="max-w-md pb-16 text-sm text-muted" data-animate="fade-up" data-duration="600">
+            <p>
+              Built with <a class="link-accent" href="https://github.com/nitishxyz/otto" target="_blank" rel="noreferrer">ottocode</a>,
+              <a class="link-accent" href="https://astro.build" target="_blank" rel="noreferrer">Astro</a>,
+              and <a class="link-accent" href="https://tailwindcss.com" target="_blank" rel="noreferrer">Tailwind CSS</a>.
+            </p>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      // Cursor spotlight — smooth canvas-based
+      const spotlight = document.getElementById("spotlight") as HTMLCanvasElement | null;
+      if (spotlight) {
+        const canvas = document.createElement("canvas");
+        canvas.style.cssText = "position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1";
+        spotlight.replaceWith(canvas);
+        const ctx = canvas.getContext("2d")!;
+        let mouseX = -1000, mouseY = -1000;
+        let curX = -1000, curY = -1000;
+
+        const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+        resize();
+        window.addEventListener("resize", resize);
+
+        document.addEventListener("mousemove", (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+
+        const draw = () => {
+          curX += (mouseX - curX) * 0.15;
+          curY += (mouseY - curY) * 0.15;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const gradient = ctx.createRadialGradient(curX, curY, 0, curX, curY, 600);
+          gradient.addColorStop(0, "rgba(255, 255, 255, 0.04)");
+          gradient.addColorStop(1, "transparent");
+          ctx.fillStyle = gradient;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          requestAnimationFrame(draw);
+        };
+        requestAnimationFrame(draw);
+      }
+
+      // Scroll-reveal
+      const animObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              el.style.animationDelay = `${parseInt(el.dataset.delay || "0")}ms`;
+              el.style.animationDuration = `${parseInt(el.dataset.duration || "700")}ms`;
+              el.classList.add("is-visible");
+              animObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+      );
+      document.querySelectorAll("[data-animate]").forEach((el) => animObserver.observe(el));
+
+      // Active nav link tracking
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll("[data-nav]");
+
+      const navObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              navLinks.forEach((link) => link.classList.remove("active"));
+              const id = entry.target.getAttribute("id");
+              const active = document.querySelector(`[data-nav][href="#${id}"]`);
+              if (active) active.classList.add("active");
+            }
+          });
+        },
+        { rootMargin: "-30% 0% -60% 0%" }
+      );
+      sections.forEach((section) => navObserver.observe(section));
+    </script>
+  </body>
+</html>
