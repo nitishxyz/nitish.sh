@@ -12,7 +12,9 @@ export default defineConfig({
   integrations: [
     tailwind(),
     mdx(),
-    sitemap(),
+    sitemap({
+      customPages: ["https://nitish.sh/rss.xml"],
+    }),
     opengraphImages({
       options: {
         fonts: [
