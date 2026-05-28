@@ -52,6 +52,8 @@ const blogStructuredData = {
         <a
           href="/"
           class="group inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline"
+          data-s-event="Back home click"
+          data-s-event-props="from=blog_index"
         >
           <svg class="h-4 w-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10M7 7v10" transform="rotate(180 12 12)"/>
@@ -81,6 +83,8 @@ const blogStructuredData = {
                 <a
                   href={`/blog/${post.id}/`}
                   class="card-glow group block rounded-lg p-6 -mx-6 transition-all"
+                  data-s-event="Blog post click"
+                  data-s-event-props={`post=${post.id};source=blog_index`}
                 >
                   <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6">
                     <span class="text-xs font-semibold uppercase tracking-wide text-muted shrink-0 sm:w-32">
