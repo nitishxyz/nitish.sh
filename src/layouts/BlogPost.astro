@@ -1,9 +1,9 @@
 ---
-import { getImagePath } from "astro-opengraph-images";
 import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import { SITE_TITLE, SITE_URL } from "../consts";
+import { getOpenGraphImagePath } from "../lib/open-graph";
 
 type Props = CollectionEntry<"blog">["data"] & {
   readingTime?: number;
@@ -12,7 +12,7 @@ type Props = CollectionEntry<"blog">["data"] & {
 
 const { title, description, pubDate, updatedDate, heroImage, readingTime, headings } = Astro.props;
 const hasTableOfContents = headings && headings.filter((h) => h.depth <= 3).length > 2;
-const openGraphImage = getImagePath({ url: Astro.url, site: Astro.site });
+const openGraphImage = getOpenGraphImagePath({ url: Astro.url, site: Astro.site });
 const structuredDataImage = heroImage
   ? new URL(heroImage.src, Astro.url).toString()
   : openGraphImage;

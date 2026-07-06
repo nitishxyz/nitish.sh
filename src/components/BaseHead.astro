@@ -1,7 +1,7 @@
 ---
-import { getImagePath } from "astro-opengraph-images";
 import "../styles/global.css";
 import { SITE_TITLE } from "../consts";
+import { getOpenGraphImagePath } from "../lib/open-graph";
 
 type StructuredData = Record<string, unknown> | Array<Record<string, unknown>>;
 
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const generatedImage = getImagePath({ url: Astro.url, site: Astro.site });
+const generatedImage = getOpenGraphImagePath({ url: Astro.url, site: Astro.site });
 const {
   title,
   description,

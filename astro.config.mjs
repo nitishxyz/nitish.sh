@@ -1,5 +1,6 @@
 // @ts-check
 import * as fs from "node:fs";
+import cloudflare from "@astrojs/cloudflare";
 import mdx from "@astrojs/mdx";
 import opengraphImages from "astro-opengraph-images";
 import sitemap from "@astrojs/sitemap";
@@ -9,6 +10,10 @@ import { renderOpenGraphImage } from "./og-image-renderer.mjs";
 
 export default defineConfig({
   site: "https://nitish.sh",
+  output: "static",
+  adapter: cloudflare({
+    configPath: process.env.SST_WRANGLER_PATH,
+  }),
   integrations: [
     tailwind(),
     mdx(),
