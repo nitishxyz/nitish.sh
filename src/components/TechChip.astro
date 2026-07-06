@@ -1,0 +1,30 @@
+---
+import { techLinks } from "../lib/techLinks";
+
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+const url = techLinks[name];
+const className =
+  "rounded-full border border-[rgba(255,255,255,0.08)] px-2.5 py-0.5 text-xs text-muted transition-colors";
+const linkClassName = `${className} hover:text-bright hover:border-[rgba(255,255,255,0.18)]`;
+---
+
+{
+  url ? (
+    <a
+      href={url}
+      target="_blank"
+      rel="noreferrer noopener"
+      class={linkClassName}
+      data-s-event="Tech chip click"
+      data-s-event-props={`tech=${name}`}
+    >
+      {name}
+    </a>
+  ) : (
+    <span class={className}>{name}</span>
+  )
+}

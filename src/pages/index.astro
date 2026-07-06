@@ -1,6 +1,7 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
+import TechChip from "../components/TechChip.astro";
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "../consts";
 import { getCollection } from "astro:content";
 
@@ -12,52 +13,46 @@ const jobs = [
   {
     company: "Ngrave",
     url: "https://ngrave.io",
-    role: "Full-Stack Engineer",
-    period: "2025 — Present",
-    current: true,
-    bullets: [
-      "Co-led migration from bare React Native → Expo (EAS)",
-      "Architected automated iOS/Android build & release pipeline",
-      "Implemented secure wallet transaction flows",
-    ],
-    tech: ["React Native", "Expo", "TypeScript", "CI/CD"],
-  },
-  {
-    company: "Trilogy (Crossover)",
-    url: "https://www.crossover.com",
     role: "Senior Mobile Engineer",
-    period: "2024",
+    period: "May 2025 - Apr 2026",
     bullets: [
-      "Built production React Native features for TeachTap",
-      "Developed reusable UI component systems",
-      "Optimized performance across devices",
+      "Led Liquid wallet migration to Expo and the New Architecture on iOS and Android",
+      "Improved mobile CI/CD and shipped secure production wallet flows",
     ],
-    tech: ["React Native", "TypeScript"],
+    tech: ["React Native", "Expo", "EAS", "TypeScript", "CI/CD"],
   },
   {
-    company: "Suptho Inc.",
+    company: "Suptho Inc",
     url: "#",
-    role: "Full-Stack Engineer",
-    period: "2021 — 2024",
+    role: "Full Stack Developer",
+    period: "Sep 2022 - Apr 2025",
     bullets: [
-      "Built & scaled mobile app to 7K+ users",
-      "Built & scaled Telegram bot to 80K+ users",
-      "Led backend migration Firebase → AWS",
-      "Owned frontend, backend, and infra end-to-end",
+      "Owned full-stack as map-based social app scaled to 87,000+ users",
+      "Led AWS migration; built mobile, APIs, WebSockets, and PostgreSQL backend",
     ],
-    impact: "0 → 87K+ users",
-    tech: ["React Native", "Node.js", "AWS"],
+    tech: ["React Native", "Expo", "EAS", "TypeScript", "Node.js", "Go", "PostgreSQL", "AWS"],
+  },
+  {
+    company: "Sontse Technology",
+    url: "#",
+    role: "React Native Developer",
+    period: "Oct 2021 - Aug 2022",
+    bullets: [
+      "Built React Native MVP for a dating/social app from concept to release",
+      "Firebase backend and core flows with the founding team",
+    ],
+    tech: ["React Native", "TypeScript", "Firebase"],
   },
   {
     company: "Shapeman Technologies",
     url: "#",
     role: "React Native Developer",
-    period: "2020 — 2021",
+    period: "Sep 2020 - Sep 2021",
     bullets: [
-      "Built client-facing React Native apps",
-      "Integrated REST APIs and shipped production UI flows",
+      "Cross-platform React Native apps for consultancy clients",
+      "Dermacupid MVP plus reusable UI and API integration",
     ],
-    tech: ["React Native", "JavaScript"],
+    tech: ["React Native", "TypeScript", "JavaScript"],
   },
 ];
 
@@ -65,38 +60,43 @@ const projects = [
   {
     name: "ottocode",
     description:
-      "AI-powered coding agent + orchestrator. CLI, desktop app, and embeddable server with multi-interface architecture around a shared core.",
-    tech: ["SST", "Cloudflare", "AWS", "Tauri", "TypeScript", "Bun"],
+      "AI coding agent across CLI, desktop, and server with a shared core.",
+    tech: ["SST", "Cloudflare", "AWS", "Hono", "Drizzle", "ai-sdk", "Tauri", "TypeScript", "Bun"],
     url: "https://ottocode.io",
     stars: "",
   },
   {
     name: "riven",
     description:
-      "Wallets and payments on Solana for humans and AI agents. Invoicing, USDC settlement, and USD/EUR bank rails via Bridge.xyz, with per-agent wallets and x402 MCP payments.",
-    tech: ["Solana", "TypeScript", "Privy", "Bridge", "x402"],
+      "Solana payments and invoicing with USD/EUR bank rails and per-agent wallets.",
+    tech: ["Solana", "TypeScript", "Hono", "Drizzle", "Privy", "Bridge", "x402"],
     url: "https://riven.cash",
+    award: "Honorable Mention, Colosseum Frontier Hackathon",
+    awardUrl:
+      "https://blog.colosseum.com/announcing-the-winners-of-the-solana-frontier-hackathon/#honorable-mentions",
   },
   {
     name: "solforge",
     description:
-      "Solana localnet orchestration tool for developers. Allows cloning mainnet programs & tokens into local validator. Open-source dev tool.",
+      "Local Solana dev suite with fast startup and mainnet program cloning.",
     tech: ["Bun", "Vite", "TypeScript", "SST", "AWS"],
     url: "https://solforge.sh",
-    award: "Honorable Mention — Colosseum Cypherpunk Hackathon",
+    award: "Honorable Mention, Colosseum Cypherpunk Hackathon",
+    awardUrl:
+      "https://blog.colosseum.com/announcing-the-winners-of-the-solana-cypherpunk-hackathon/#infrastructure-track",
   },
   {
     name: "soljar",
     description:
-      'Solana-powered "Instabank" for receiving bank transfers & USDC. Built wallet + swap + fiat withdrawal flows with a focus on seamless crypto-to-fiat UX.',
-    tech: ["SST", "Cloudflare", "AWS", "Expo", "React Native"],
+      'Receive bank and USDC transfers with wallet, swap, and fiat off-ramp.',
+    tech: ["SST", "Cloudflare", "AWS", "Hono", "Drizzle", "Expo", "React Native"],
     url: "https://soljar.xyz",
   },
   {
     name: "snaplog.ai",
     description:
-      "AI-powered structured writing platform. Converts fragmented notes into structured writeups with AI-assisted editing and iterative refinement. Live production SaaS.",
-    tech: ["Next.js", "TypeScript", "PostgreSQL", "Gemini"],
+      "Turn rough notes into structured writeups with AI-assisted editing.",
+    tech: ["Next.js", "TypeScript", "PostgreSQL", "ai-sdk", "Gemini"],
     url: "https://snaplog.ai",
   },
 ];
@@ -109,17 +109,12 @@ const homepageStructuredData = [
     url: SITE_URL,
     description: SITE_DESCRIPTION,
     jobTitle: "Senior Software Engineer",
-    email: "mailto:nitishxyz@proton.me",
+    email: "mailto:me@nitish.sh",
     sameAs: [
       "https://github.com/nitishxyz",
       "https://x.com/nitishxyz",
       "https://www.linkedin.com/in/nitishxyz/",
     ],
-    worksFor: {
-      "@type": "Organization",
-      name: "Ngrave",
-      url: "https://ngrave.io",
-    },
     knowsAbout: ["React Native", "Expo", "TypeScript", "Node.js", "PostgreSQL", "AWS", "Solana", "CI/CD"],
   },
   {
@@ -137,7 +132,7 @@ const homepageStructuredData = [
 <html lang="en" class="scroll-smooth">
   <head>
     <BaseHead
-      title={`${SITE_TITLE} — Senior Software Engineer`}
+      title={`${SITE_TITLE} | Senior Software Engineer`}
       description={SITE_DESCRIPTION}
       structuredData={homepageStructuredData}
     />
@@ -149,7 +144,7 @@ const homepageStructuredData = [
       class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 md:py-20 lg:px-24 lg:py-0"
     >
       <div class="lg:flex lg:justify-between lg:gap-4">
-        <!-- LEFT COLUMN — sticky header -->
+        <!-- LEFT COLUMN: sticky header -->
         <header
           class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24"
         >
@@ -171,23 +166,10 @@ const homepageStructuredData = [
                 <a href="/">Nitish Sharma</a>
               </h1>
               <h2 class="mt-3 text-lg font-medium tracking-tight text-bright sm:text-xl">
-                Senior Software Engineer — Mobile &amp; Full-Stack
+                Senior Software Engineer, Mobile &amp; Full-Stack
               </h2>
               <p class="mt-4 max-w-sm leading-normal text-muted">
-                5+ years building production mobile and full-stack products — from Expo migrations and wallet apps to tools and crypto/payment products on Solana.
-              </p>
-              <p class="mt-3">
-                <a
-                  href="/resume.pdf"
-                  class="inline-flex items-center gap-1 text-sm font-medium text-muted hover:text-bright transition-colors"
-                  data-s-event="Resume click"
-                  data-s-event-props="location=hero"
-                >
-                  Resume
-                  <svg class="h-3.5 w-3.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                  </svg>
-                </a>
+                5+ years building production mobile and full-stack products, from Expo migrations and wallet apps to tools and crypto/payment products on Solana.
               </p>
             </div>
 
@@ -264,7 +246,7 @@ const homepageStructuredData = [
             <li>
               <a
                 class="block text-muted hover:text-bright transition-colors"
-                href="mailto:nitishxyz@proton.me"
+                href="mailto:me@nitish.sh"
                 aria-label="Email"
                 data-s-event="Contact link click"
                 data-s-event-props="method=email"
@@ -275,7 +257,7 @@ const homepageStructuredData = [
           </ul>
         </header>
 
-        <!-- RIGHT COLUMN — scrollable content -->
+        <!-- RIGHT COLUMN: scrollable content -->
         <main id="content" class="pt-24 lg:w-[52%] lg:py-24">
 
           <!-- ABOUT -->
@@ -285,14 +267,13 @@ const homepageStructuredData = [
             </div>
             <div data-animate="fade-up" data-duration="600">
               <p class="mb-4">
-                Senior software engineer with 5+ years shipping production mobile and full-stack products — including a React Native → Expo migration on a crypto wallet and full-stack ownership as a map-based social app scaled to 87,000+ users.
+                Senior software engineer with 5+ years shipping production mobile and full-stack products, including a React Native → Expo migration on a crypto wallet and full-stack ownership as a map-based social app scaled to 87,000+ users.
               </p>
               <p>
                 Strong across React Native, Expo, TypeScript, Node.js, PostgreSQL, AWS, and CI/CD, with proof-of-work in
                 <a href="https://ottocode.io" class="link-accent font-medium" target="_blank" rel="noreferrer" data-s-event="Inline link click" data-s-event-props="destination=otto">developer tools</a>
                 and
                 <a href="https://riven.cash" class="link-accent font-medium" target="_blank" rel="noreferrer" data-s-event="Inline link click" data-s-event-props="destination=riven">crypto/payment products</a>.
-                <a href="/resume.pdf" class="link-accent font-medium" data-s-event="Resume click" data-s-event-props="location=about">Full resume</a>.
               </p>
             </div>
           </section>
@@ -362,9 +343,7 @@ const homepageStructuredData = [
 
                     <div class="mt-3 flex flex-wrap gap-1.5">
                       {job.tech.map((t) => (
-                        <span class="rounded-full border border-[rgba(255,255,255,0.08)] px-2.5 py-0.5 text-xs text-muted">
-                          {t}
-                        </span>
+                        <TechChip name={t} />
                       ))}
                     </div>
                   </div>
@@ -396,43 +375,52 @@ const homepageStructuredData = [
             </div>
             <div class="space-y-6">
               {projects.map((project, i) => (
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noreferrer noopener"
+                <div
                   class="card-glow group block rounded-lg p-5 lg:p-6 lg:-mx-6 transition-all"
                   data-animate="fade-up"
                   data-delay={String(i * 80)}
                   data-duration="600"
-                  data-s-event="Project link click"
-                  data-s-event-props={`project=${project.name}`}
                 >
-                  <div class="flex items-baseline justify-between gap-4 mb-1.5">
-                    <h3 class="text-bright font-medium group-hover:text-white transition-colors">
-                      {project.name}
-                      <svg class="ml-1 mb-0.5 inline-block h-3 w-3 opacity-40 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/>
-                      </svg>
-                    </h3>
-                  </div>
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    class="relative z-[1] block"
+                    data-s-event="Project link click"
+                    data-s-event-props={`project=${project.name}`}
+                  >
+                    <div class="flex items-baseline justify-between gap-4 mb-1.5">
+                      <h3 class="text-bright font-medium group-hover:text-white transition-colors">
+                        {project.name}
+                        <svg class="ml-1 mb-0.5 inline-block h-3 w-3 opacity-40 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/>
+                        </svg>
+                      </h3>
+                    </div>
 
-                  <p class="text-sm text-subtle leading-relaxed">{project.description}</p>
+                    <p class="text-sm text-subtle leading-relaxed">{project.description}</p>
+                  </a>
 
-                  {project.award && (
-                    <p class="mt-2 text-sm font-medium text-green-400 flex items-center gap-1.5">
-                      <svg class="h-3.5 w-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd"/></svg>
+                  {project.award && project.awardUrl && (
+                    <a
+                      href={project.awardUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      class="relative z-[1] mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-green-400 underline decoration-green-400/40 underline-offset-2 hover:text-green-300 hover:decoration-green-300/60 transition-colors cursor-pointer"
+                      data-s-event="Project award link click"
+                      data-s-event-props={`project=${project.name}`}
+                    >
+                      <svg class="h-3.5 w-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd"/></svg>
                       {project.award}
-                    </p>
+                    </a>
                   )}
 
                   <div class="mt-3 flex flex-wrap gap-1.5">
                     {project.tech.map((t) => (
-                      <span class="rounded-full border border-[rgba(255,255,255,0.08)] px-2.5 py-0.5 text-xs text-muted">
-                        {t}
-                      </span>
+                      <TechChip name={t} />
                     ))}
                   </div>
-                </a>
+                </div>
               ))}
             </div>
           </section>
@@ -495,7 +483,7 @@ const homepageStructuredData = [
     </div>
 
     <script>
-      // Cursor spotlight — smooth canvas-based
+      // Cursor spotlight: smooth canvas-based
       const spotlight = document.getElementById("spotlight") as HTMLCanvasElement | null;
       if (spotlight) {
         const canvas = document.createElement("canvas");

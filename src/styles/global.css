@@ -115,6 +115,7 @@ body::before {
   position: absolute;
   inset: 0;
   border-radius: inherit;
+  pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
   background: linear-gradient(
