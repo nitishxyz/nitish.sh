@@ -71,6 +71,13 @@ const projects = [
     stars: "",
   },
   {
+    name: "riven",
+    description:
+      "Wallets and payments on Solana for humans and AI agents. Invoicing, USDC settlement, and USD/EUR bank rails via Bridge.xyz, with per-agent wallets and x402 MCP payments.",
+    tech: ["Solana", "TypeScript", "Privy", "Bridge", "x402"],
+    url: "https://riven.cash",
+  },
+  {
     name: "solforge",
     description:
       "Solana localnet orchestration tool for developers. Allows cloning mainnet programs & tokens into local validator. Open-source dev tool.",
@@ -101,7 +108,7 @@ const homepageStructuredData = [
     name: SITE_TITLE,
     url: SITE_URL,
     description: SITE_DESCRIPTION,
-    jobTitle: "Full-Stack Engineer",
+    jobTitle: "Senior Software Engineer",
     email: "mailto:nitishxyz@proton.me",
     sameAs: [
       "https://github.com/nitishxyz",
@@ -113,7 +120,7 @@ const homepageStructuredData = [
       name: "Ngrave",
       url: "https://ngrave.io",
     },
-    knowsAbout: ["React Native", "Next.js", "AWS", "Solana", "Expo", "TypeScript"],
+    knowsAbout: ["React Native", "Expo", "TypeScript", "Node.js", "PostgreSQL", "AWS", "Solana", "CI/CD"],
   },
   {
     "@context": "https://schema.org",
@@ -130,7 +137,7 @@ const homepageStructuredData = [
 <html lang="en" class="scroll-smooth">
   <head>
     <BaseHead
-      title={`${SITE_TITLE} — Full-Stack Engineer`}
+      title={`${SITE_TITLE} — Senior Software Engineer`}
       description={SITE_DESCRIPTION}
       structuredData={homepageStructuredData}
     />
@@ -164,10 +171,23 @@ const homepageStructuredData = [
                 <a href="/">Nitish Sharma</a>
               </h1>
               <h2 class="mt-3 text-lg font-medium tracking-tight text-bright sm:text-xl">
-                Full-Stack Engineer
+                Senior Software Engineer — Mobile &amp; Full-Stack
               </h2>
-              <p class="mt-4 max-w-xs leading-normal text-muted">
-                I build products from 0→1 and scale them in production. Strong in React Native, Next.js, AWS, and Solana.
+              <p class="mt-4 max-w-sm leading-normal text-muted">
+                5+ years building production mobile and full-stack products — from Expo migrations and wallet apps to tools and crypto/payment products on Solana.
+              </p>
+              <p class="mt-3">
+                <a
+                  href="/resume.pdf"
+                  class="inline-flex items-center gap-1 text-sm font-medium text-muted hover:text-bright transition-colors"
+                  data-s-event="Resume click"
+                  data-s-event-props="location=hero"
+                >
+                  Resume
+                  <svg class="h-3.5 w-3.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
+                </a>
               </p>
             </div>
 
@@ -265,14 +285,14 @@ const homepageStructuredData = [
             </div>
             <div data-animate="fade-up" data-duration="600">
               <p class="mb-4">
-                I’m a full-stack engineer focused on building production apps, backend systems, and developer tooling.
-                Lately, that has meant shipping React Native products and owning features end-to-end.
-                Currently tinkering on <a href="https://ottocode.io" class="link-accent font-medium" target="_blank" rel="noreferrer" data-s-event="Inline link click" data-s-event-props="destination=otto">otto</a>.
+                Senior software engineer with 5+ years shipping production mobile and full-stack products — including a React Native → Expo migration on a crypto wallet and full-stack ownership as a map-based social app scaled to 87,000+ users.
               </p>
               <p>
-                Outside work — building
-                <a href="https://github.com/nitishxyz" class="link-accent font-medium" target="_blank" rel="noreferrer" data-s-event="Inline link click" data-s-event-props="destination=github">open-source tools</a>
-                for Solana and experimenting with AI dev tools.
+                Strong across React Native, Expo, TypeScript, Node.js, PostgreSQL, AWS, and CI/CD, with proof-of-work in
+                <a href="https://ottocode.io" class="link-accent font-medium" target="_blank" rel="noreferrer" data-s-event="Inline link click" data-s-event-props="destination=otto">developer tools</a>
+                and
+                <a href="https://riven.cash" class="link-accent font-medium" target="_blank" rel="noreferrer" data-s-event="Inline link click" data-s-event-props="destination=riven">crypto/payment products</a>.
+                <a href="/resume.pdf" class="link-accent font-medium" data-s-event="Resume click" data-s-event-props="location=about">Full resume</a>.
               </p>
             </div>
           </section>

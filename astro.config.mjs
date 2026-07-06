@@ -13,7 +13,7 @@ export default defineConfig({
     tailwind(),
     mdx(),
     sitemap({
-      customPages: ["https://nitish.sh/rss.xml"],
+      customPages: ["https://nitish.sh/rss.xml", "https://nitish.sh/resume.pdf"],
     }),
     opengraphImages({
       options: {
